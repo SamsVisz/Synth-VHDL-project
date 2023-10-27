@@ -1,0 +1,71 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+use IEEE.NUMERIC_STD.ALL; 
+
+entity waveGeneratorX is
+	port (clkDiv     	: in std_logic;
+			nrst			: in std_logic;
+			note			: in std_logic_vector(12 downto 0);
+			enab			: in std_logic_vector(1 downto 0);
+			i_data 		: out std_logic_vector(8 downto 0));
+end waveGeneratorX;
+
+architecture Behavioral of waveGeneratorX is
+
+
+type sampleTimeArray is array (0 to 12) of unsigned(7 downto 0);
+signal sampleTime : sampleTimeArray := ("01011111","00000000","00000000","00000000","00000000","00000000","00000000","00000000","00000000","00000000","00000000","00000000","00000000");
+
+--signals for square wave
+signal i : unsigned(7 downto 0) := "00000000";	--counter
+signal noteX : integer;												--Correspond to which note is played
+signal transition : unsigned(7 downto 0);			--transition for squarewave
+signal x : integer;
+
+--signals for sawtooth wave
+signal numberTimes100	: unsigned(14 downto 0);
+signal numberForDiv		: unsigned(14 downto 0) := "110010000000000";
+signal sawCount	: unsigned(14 downto 0) := "000000000000000";
+
+Begin
+	process(clkDiv,note,nrst,sampleTime)
+	begin 
+		if note = "1111111111110" then
+			noteX <= 0;
+			--Square Wave
+			transition <= ('0' & sampleTime(0)(7 downto 1)); --divide by two
+			
+			--Saw Wave
+			numberTimes100 <= numberForDiv/("0000000" & sampleTime(0));					 --25600/sampleTime		
+		end if;	
+
+		
+		if nrst = '0' then
+			i_data <= "000000000";
+		elsif rising_edge(clkDiv) then
+		
+			--SQUARE WAVE
+			if enab = "01" then										
+				if i < transition then
+					x <= 0;
+				else
+					x <= 255;
+				end if;	
+				if i = sampleTime(noteX) then
+					i <= "00000000";
+				else	
+					i <= i + "00000001";
+				end if;
+				i_data <= std_logic_vector(to_unsigned(x,9));
+				
+			--SAW WAVE	
+			elsif enab = "11" then									
+				sawCount <= sawCount + numberTimes100(8 downto 0);
+				i_data <= std_logic_vector(sawCount);
+			end if;	
+		end if;
+			
+	end process;
+end architecture Behavioral;	
+	

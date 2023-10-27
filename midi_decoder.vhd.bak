@@ -1,0 +1,27 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.NUMERIC_STD.ALL; 
+
+entity midi_decoder is
+
+PORT ( midi	: in std_logic;
+		 C		: out std_logic;
+		 clk	: in std_logic;
+		 nrst	: in std_logic);
+end midi_decoder;
+
+architecture Behavioural of midi_decoder is
+signal counter	: integer range 0 to 50000 := 0;
+begin
+
+	process(clk,nrst)
+		if nrst = '0' then
+		elsif rising_edge(clk) then
+			if midi = not midi then
+	begin
+
+	end process;
+end Behavioural;		 
+ 
+
+

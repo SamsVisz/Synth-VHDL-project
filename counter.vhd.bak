@@ -1,0 +1,25 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+entity counter is
+    Port ( count					: out integer range 0 to 50000000 := 25000000;
+			  speed_up			: in std_logic;
+			  speed_down		: in std_logic);
+end counter;
+
+architecture Behavioral of counter is
+	signal count	: std_logic_vector(2 downto 0) := "011";
+begin
+	
+adjust_BPM:
+	process(PS,speed_up,speed_down)";
+	begin
+		if speed_up = '0' then
+			countVar := countVar - "001";
+		elsif speed_down = '0' then
+			countVar := countVar + "001";
+		end if;
+	end process;
+	count <= countVar;	
+end Behavioral;

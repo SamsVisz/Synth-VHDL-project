@@ -1,0 +1,22 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity Keyboard is
+    Port ( C	 : in STD_LOGIC;
+			  D    : in STD_LOGIC;
+			  E    : in STD_LOGIC;
+           note : out  STD_LOGIC_VECTOR(2 downto 0));
+end Keyboard;
+
+architecture Behavioral of Keyboard is 
+	signal outp_bus : std_LOGIC_VECTOR(2 downto 0) := "000";
+begin
+	process (C ,D ,E,outp_bus)              
+   begin
+		--output bus
+		outp_bus(0) <= C;
+		outp_bus(1) <= D;
+		outp_bus(2) <= E;
+   end process; 
+note <= outp_bus;
+end Behavioral;

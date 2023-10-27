@@ -1,0 +1,25 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+ENTITY attack_value IS
+port(		in		:	clk 	std_logic;
+			in		:	nrst	std_logic;
+			in		:	POT	std_logic_vector(7 downto 0);
+			
+			);
+end attack_value;
+
+architecture behaviour of attack_value is
+signal temp : std_logic_vector(7 downto 0);
+begin
+tamp <= POT;
+
+process(clk,nrst)
+variable counter : std_logic_vector(?);
+begin
+	if nrst = 0 then
+		--
+	elsif rising_edge(clk) then
+		
+
+end process;

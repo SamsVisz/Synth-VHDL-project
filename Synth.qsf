@@ -1,0 +1,143 @@
+# -------------------------------------------------------------------------- #
+#
+# Copyright (C) 2020  Intel Corporation. All rights reserved.
+# Your use of Intel Corporation's design tools, logic functions 
+# and other software and tools, and any partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Intel Program License 
+# Subscription Agreement, the Intel Quartus Prime License Agreement,
+# the Intel FPGA IP License Agreement, or other applicable license
+# agreement, including, without limitation, that your use is for
+# the sole purpose of programming logic devices manufactured by
+# Intel and sold by Intel or its authorized distributors.  Please
+# refer to the applicable agreement for further details, at
+# https://fpgasoftware.intel.com/eula.
+#
+# -------------------------------------------------------------------------- #
+#
+# Quartus Prime
+# Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
+# Date created = 16:37:21  February 21, 2022
+#
+# -------------------------------------------------------------------------- #
+#
+# Notes:
+#
+# 1) The default values for assignments are stored in the file:
+#		Synth_assignment_defaults.qdf
+#    If this file doesn't exist, see file:
+#		assignment_defaults.qdf
+#
+# 2) Altera recommends that you do not modify this file. This
+#    file is updated automatically by the Quartus Prime software
+#    and any changes you make may be lost or overwritten.
+#
+# -------------------------------------------------------------------------- #
+
+
+set_global_assignment -name FAMILY "Cyclone V"
+set_global_assignment -name DEVICE 5CSEMA5F31C6
+set_global_assignment -name TOP_LEVEL_ENTITY Synth
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 20.1.1
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "16:37:21  FEBRUARY 21, 2022"
+set_global_assignment -name LAST_QUARTUS_VERSION "20.1.1 Lite Edition"
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 256
+set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (VHDL)"
+set_global_assignment -name EDA_TIME_SCALE "1 ps" -section_id eda_simulation
+set_global_assignment -name EDA_OUTPUT_DATA_FORMAT VHDL -section_id eda_simulation
+set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_timing
+set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_symbol
+set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_signal_integrity
+set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_boundary_scan
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_location_assignment PIN_AF14 -to clk
+set_location_assignment PIN_AD10 -to D
+set_location_assignment PIN_AC9 -to E
+set_location_assignment PIN_AE12 -to C
+set_location_assignment PIN_AD12 -to G
+set_location_assignment PIN_AE11 -to F
+set_location_assignment PIN_AF9 -to sequence_enab[0]
+set_location_assignment PIN_AC12 -to sequence_enab[1]
+set_location_assignment PIN_AD11 -to A
+set_location_assignment PIN_AA14 -to speed_up
+set_location_assignment PIN_W15 -to nrst
+set_location_assignment PIN_AE27 -to seg1
+set_location_assignment PIN_AE28 -to seg2
+set_location_assignment PIN_AG27 -to seg3
+set_location_assignment PIN_AF28 -to seg4
+set_location_assignment PIN_AG28 -to seg5
+set_location_assignment PIN_AH28 -to seg6
+set_location_assignment PIN_AJ29 -to seg10
+set_location_assignment PIN_AH29 -to seg11
+set_location_assignment PIN_AH30 -to seg12
+set_location_assignment PIN_AG30 -to seg13
+set_location_assignment PIN_AF29 -to seg14
+set_location_assignment PIN_AF30 -to seg15
+set_location_assignment PIN_AD27 -to seg16
+set_location_assignment PIN_AE26 -to seg0
+set_location_assignment PIN_AB12 -to en[1]
+set_location_assignment PIN_AF10 -to en[0]
+set_location_assignment PIN_AG22 -to i_data[1]
+set_location_assignment PIN_AH23 -to i_data[2]
+set_location_assignment PIN_AH25 -to i_data[3]
+set_location_assignment PIN_AJ27 -to i_data[4]
+set_location_assignment PIN_AG25 -to i_data[5]
+set_location_assignment PIN_AC23 -to i_data[6]
+set_location_assignment PIN_AA21 -to i_data[7]
+set_location_assignment PIN_AB17 -to i_data[8]
+set_location_assignment PIN_AC22 -to i_data[0]
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
+set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_global_assignment -name BDF_FILE Synth.bdf
+set_global_assignment -name VHDL_FILE Keyboard.vhd
+set_global_assignment -name VHDL_FILE Polythonic.vhd
+set_global_assignment -name VHDL_FILE oscillator.vhd
+set_global_assignment -name BDF_FILE Polythonic_synth.bdf
+set_global_assignment -name BDF_FILE Monothonic_synth.bdf
+set_global_assignment -name VHDL_FILE sinewave.vhd
+set_global_assignment -name VHDL_FILE squareWave.vhd
+set_global_assignment -name VHDL_FILE sequencer.vhd
+set_global_assignment -name VHDL_FILE BPM.vhd
+set_global_assignment -name VHDL_FILE SET_BPM.vhd
+set_global_assignment -name VHDL_FILE toseg.vhd
+set_global_assignment -name VHDL_FILE counter.vhd
+set_global_assignment -name VHDL_FILE adjust_BPM.vhd
+set_global_assignment -name VHDL_FILE write_table.vhd
+set_global_assignment -name VHDL_FILE clockDiv.vhd
+set_global_assignment -name VHDL_FILE delay.vhd
+set_global_assignment -name VHDL_FILE fir_filter_4.vhd
+set_global_assignment -name VHDL_FILE WaveGenerator.vhd
+set_global_assignment -name VHDL_FILE FIR_Filter.vhd
+set_global_assignment -name VHDL_FILE attack_value.vhd
+set_global_assignment -name VHDL_FILE noise.vhd
+set_global_assignment -name VHDL_FILE noise_oscillator.vhd
+set_global_assignment -name VHDL_FILE waveGenerator.vhd
+set_global_assignment -name VHDL_FILE midiDecoder.vhd
+set_global_assignment -name VHDL_FILE shiftreg.vhd
+set_global_assignment -name VHDL_FILE shiftreg_1.vhd
+set_global_assignment -name VHDL_FILE ALU.vhd
+set_global_assignment -name VHDL_FILE adder.vhd
+set_global_assignment -name VHDL_FILE subtract.vhd
+set_global_assignment -name VHDL_FILE shiftreg_2.vhd
+set_global_assignment -name VHDL_FILE shiftreg_3.vhd
+set_global_assignment -name VHDL_FILE outRed.vhd
+set_global_assignment -name VHDL_FILE outReg.vhd
+set_global_assignment -name VHDL_FILE shiftReg_0.vhd
+set_global_assignment -name VHDL_FILE shiftReg_1.vhd
+set_global_assignment -name VHDL_FILE controller1.vhd
+set_global_assignment -name VHDL_FILE controller2.vhd
+set_global_assignment -name BDF_FILE Filter.bdf
+set_global_assignment -name VHDL_FILE midi_decoder.vhd
+set_global_assignment -name BDF_FILE fir.bdf
+set_global_assignment -name VHDL_FILE waveGeneratorX.vhd
+set_global_assignment -name VHDL_FILE FinalOutputReg.vhd
+set_global_assignment -name VHDL_FILE normal.vhd
+set_global_assignment -name VHDL_FILE MUX.vhd
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

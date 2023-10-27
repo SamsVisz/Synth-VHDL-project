@@ -1,0 +1,71 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_SIGNED.ALL;
+
+entity sequencer is
+    Port ( clk					: in std_logic;
+			  sequence_enab	: in std_logic_vector(1 downto 0);
+			  input				: in std_logic_vector(6 downto 0);
+			  speed_up			: in std_logic;
+			  speed_down		: in std_logic;
+			  note				: out std_logic_vector(6 downto 0));
+end sequencer;
+
+architecture Behavioral of sequencer is
+	signal temp 	: std_logic_vector(6 downto 0);
+	signal counter : integer := 0;
+	signal speed 	: integer := 0;
+begin
+	
+	process(speed_down, speed_up)
+	begin
+			if speed_down = '1' then
+				speed <= speed - 5;
+			elsif speed_up = '1' then
+				speed <= speed + 5;
+			else 
+				speed <= speed + 0;
+			end if;
+	end process;		
+
+	process (clk) 
+   begin
+		if rising_edge(clk) then	
+
+
+			
+			if sequence_enab = "00" then
+				temp <= input;
+			elsif sequence_enab = "01" then		--up in steps of 2
+				if counter = 25 + speed then
+										temp(0) <= input(5);
+										temp(1) <= input(6);
+										temp(2) <= input(0);
+										temp(3) <= input(1);
+										temp(4) <= input(2);
+										temp(5) <= input(3);
+										temp(6) <= input(4);
+										counter <= counter + 1;										
+				elsif counter = 50 + speed + speed then
+										temp(2) <= input(5);
+										temp(3) <= input(6);
+										temp(4) <= input(0);
+										temp(5) <= input(1);
+										temp(6) <= input(2);
+										temp(0) <= input(3);
+										temp(1) <= input(4);
+										counter <= counter + 1;										
+				elsif counter = 75 + speed + speed + speed then
+										counter <= 0;				
+				elsif counter = 0 then
+										temp <= input;
+										counter <= counter + 1;
+				else
+										counter <= counter + 1;
+				end if;
+
+			end if;
+		end if;
+   end process;
+	note <= temp;
+end Behavioral;

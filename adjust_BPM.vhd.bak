@@ -1,0 +1,49 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+entity adjust_BPM is
+    Port ( BPM					: out integer := 12500000;
+			  count				: in std_logic_vector(2 downto 0);
+			  nrst				: in std_logic;
+			  clk					: in std_logic);
+end adjust_BPM;
+
+architecture Behavioral of adjust_BPM is
+	signal speed 	: integer := 12500000;
+	type stateType is (S20,S40,S60,S80,S100);
+	signal PS, NS : stateType := S60;
+begin
+	
+adjust_BPM:
+	process(PS)
+	begin
+		case PS is
+			when S20  => if count = "000" then NS <= S20;	elsif count = "010" then NS <= S40; else NS <= S20;end if;
+			when S40  => if count = "001" then NS <= S20; 	elsif count = "011" then NS <= S60; else NS <= S40;end if;
+			when S60  => if count = "010" then NS <= S40; 	elsif count = "100" then NS <= S80; else NS <= S60; end if;								--1/16th loop at 120 bpm
+			when S80  => if count = "011" then NS <= S60; 	elsif count = "101" then NS <= S100; else NS <= S80;end if;
+			when S100 => if count = "100" then NS <= S80; 	elsif count = "111" then NS <= S100; else NS <= S100;end if;
+		end case; 
+	end process;
+
+memory:
+	process(nrst,clk)
+	begin
+		if nrst = '0' then PS <= s60;
+		elsif rising_edge(clk) then PS<=NS; end if;
+	end process;
+
+output_decoder:
+	process(PS)
+		begin
+			case PS is
+				when S20 => speed <= 37500000;
+				when S40 => speed <= 18750000;
+				when S60 => speed <= 12500000;
+				when S80 => speed <= 9375000;
+				when S100 =>speed <= 7500000;
+			end case;
+	end process;		
+	bpm <= speed;	
+end Behavioral;

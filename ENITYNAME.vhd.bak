@@ -1,0 +1,26 @@
+--  Library Declaration
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+--  Entity Declaration
+entity ENITYNAME is
+	port
+	(
+		Sine: in std_logic_vector(7 downto 0);
+		Output: out std_logic_vector(7 downto 0)
+	);
+
+end ENITYNAME;
+
+
+--  Architecture Body
+architecture ARCHNAME of ENTITYNAME is
+--signal can be declared at this position
+
+BEGIN
+	
+	begin
+		
+		
+	end process;
+end architecture;
